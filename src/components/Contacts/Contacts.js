@@ -1,10 +1,5 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import {
-// useEffect
-// useState,
-// } from 'react';
+import { useSelector } from 'react-redux';
 import s from './Contacts.module.css';
-// import { fetchContacts, removeContact } from '../../redux/phoneBookOperation';
 import {
   useGetContactsQuery,
   useRemoveContactMutation,
@@ -14,11 +9,12 @@ const Contacts = () => {
   const { data = [], isLoading } = useGetContactsQuery();
   const [removeContact] = useRemoveContactMutation();
 
-  // const dispatch = useDispatch();
-  // const { entities, filter } = useSelector(state => state.contacts);
-  // const contacts = entities.filter(({ name }) =>
-  //   name.toLowerCase().includes(filter)
-  // );
+  const filter = useSelector(state => state.filter);
+  const normalizedFilter = filter.toLowerCase();
+  const contacts = data.filter(({ name }) =>
+    name.toLowerCase().includes(normalizedFilter)
+  );
+
   const handleDeleteContact = async id => {
     await removeContact(id).unwrap();
   };
@@ -26,7 +22,7 @@ const Contacts = () => {
   return (
     <div>
       <ul>
-        {data.map(contact => {
+        {contacts.map(contact => {
           return (
             <li key={contact.id} className={s.item}>
               <button
