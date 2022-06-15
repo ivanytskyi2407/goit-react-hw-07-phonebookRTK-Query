@@ -1,6 +1,8 @@
-import phonebookSlice from './phonebookSlice';
+import { phonebookAPI } from './phonebookAPI';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
-  reducer: { contacts: phonebookSlice },
+  reducer: { [phonebookAPI.reducerPath]: phonebookAPI.reducer },
+  middleware: getDefaultMidllware =>
+    getDefaultMidllware().concat(phonebookAPI.middleware),
 });

@@ -1,11 +1,11 @@
 import Phonebook from './Phonebook/Phonebook';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
-import { useSelector } from 'react-redux';
-import { Loader } from './Loader/Loader';
+// import { useSelector } from 'react-redux';
+// import { Loader } from './Loader/Loader';
 
 export const App = () => {
-  const { status, error } = useSelector(state => state.contacts);
+  // const { status, error } = useSelector(state => state.contacts);
 
   return (
     <div
@@ -16,8 +16,8 @@ export const App = () => {
         flexDirection: 'column',
       }}
     >
-      {error && alert(error)}
-      {status === 'loading' && <Loader />}
+      {/* {error && alert(error)}
+      {status === 'loading' && <Loader />} */}
       <h2>Phonebook</h2>
       <Phonebook />
       <Filter />
