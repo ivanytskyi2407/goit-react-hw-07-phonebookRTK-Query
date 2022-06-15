@@ -6,7 +6,7 @@ import {
 } from '../../redux/phonebookAPI';
 
 const Contacts = () => {
-  const { data = [], isLoading } = useGetContactsQuery();
+  const { data = [] } = useGetContactsQuery();
   const [removeContact] = useRemoveContactMutation();
 
   const filter = useSelector(state => state.filter);
